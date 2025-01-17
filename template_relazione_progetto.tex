@@ -60,24 +60,24 @@
 		\Large  \strut Gruppo \group\strut
 		\vspace{-0.4cm}
 }
-\author{Panaroni Davide, Finocchiaro Alfio, Traini Francesco, Xhika Kleolin }
-\date{Gennaio 2024}
+\author{Gaia Margherita, Taruffi Alice, Finocchiaro Alfio}
+\date{Febbraio 2025}
 
 \begin{document}
 
 \maketitle
 \vspace{-0.5cm}
 
-Il progetto riguarda il controllo di una macchina motorizzata dotata di disco rotante (con elasticità di  coefficiente $k$) e motore elettrico che genera la coppia dei momenti in input ($C_M$). La dinamica del sistema è definita dall'equazione differenziale
+Il progetto riguarda il controllo di una tavola rotante motorizzata dotata di giunto cardanico (con elasticità di  coefficiente $k$), attrito viscoso $b$ e motore elettrico che genera la coppia dei momenti in input ($C_M$). La dinamica del sistema è definita dall'equazione differenziale
 %
 \begin{subequations}\label{eq:system}
 \begin{align}
-	J(\theta)\dot \omega &= C_M - \beta\omega - k\theta \\
-	J(\theta) &= J_0 + \sum_{i=1}^4 J_i \cos(i\theta+\psi_i)
+	J*omega\dot &= \uptau(\theta) * C_M - \beta\omega - k\theta \\
+	\uptau(\theta) &= cos(alpha)/ (1 - ( sin(alpha) * cos(theta) )^2)
 \end{align}
 \end{subequations}
 %
-dove $\theta(t)$ rappresenta l'angolo del disco e $\omega(t)$ la sua velocità angolare.
+dove $\theta(t)$ rappresenta l'angolo della tavola e $\omega(t)$ la sua velocità angolare.
 
 
 \section{Espressione del sistema in forma di stato e calcolo del sistema linearizzato intorno ad una coppia di equilibrio}
