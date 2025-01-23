@@ -72,8 +72,8 @@ Il progetto riguarda il controllo di una tavola rotante motorizzata dotata di gi
 %
 \begin{subequations}\label{eq:system}
 \begin{align}
-	J*omega\dot &= \uptau(\theta) * C_M - \beta\omega - k\theta \\
-	\uptau(\theta) &= cos(alpha)/ (1 - ( sin(alpha) * cos(theta) )^2)
+	J\dot \omega &= \tau(\theta) * C_M - \beta\omega - k\theta \\
+	\tau(\theta) &= cos(\alpha)/ (1 - ( sin(\alpha) * cos(\theta) )^2)
 \end{align}
 \end{subequations}
 %
@@ -106,7 +106,7 @@ Coerentemente con questa scelta, ricaviamo dal sistema~\eqref{eq:system} la segu
 \begin{align*}
 	f(x,u) &:= \begin{bmatrix}
 		x_2 \\
-		u/J(x_1)-\beta x_2 /J(x_1)- k x_1/J(x_1)
+		u*\tau(x_1)-\beta x_2 - k x_1
 	\end{bmatrix}
 	\\
 	h(x,u) &:= x_1.
@@ -122,9 +122,9 @@ Una volta calcolate $f$ ed $h$ esprimiamo~\eqref{eq:system} nella seguente forma
 		\dot{x_2}
 	\end{bmatrix} = \begin{bmatrix}
 	x_2 \\
-	u/J(x_1)-\beta x_2 /J(x_1)- k x_1/J(x_1)
+	u*\tau(x_1)-\beta x_2 - k x_1
 	\end{bmatrix} \label{eq:state_form_1}
-	\\
+	\\ 
 	y = x_1.
 \end{gather*}
 \end{subequations}
@@ -134,7 +134,7 @@ Per trovare la coppia di equilibrio $(x_e, u_e)$ di~\eqref{eq:our_system_state_f
 \begin{align}
 	\begin{cases}
 		x_{2e} = 0 \\
-		u_e/J(x_{1e})-\beta x_{2e} /J(x_{1e})- k x_{1e}/J(x_{1e})= 0 \implies u_e = \beta x_{2e} + k x_{1e}
+		u*\tau(x_{1e})-\beta x_{2e} - k x_{1e}= 0 \implies u_e = k x_{1e}/\tau(x_{1e})
 	\end{cases}
 \end{align}
 %
@@ -145,9 +145,9 @@ dal quale otteniamo
 		\theta_e \\
 		\omega_e
 	\end{bmatrix} = \begin{bmatrix}
-		\frac{17}{36}\pi \\
+		\frac{5}{9}\pi \\
 		0
-	\end{bmatrix},  \quad u_e = \273*pi.\label{eq:equilibirum_pair}
+	\end{bmatrix},  \quad u_e = 273,14 \pi.\label{eq:equilibirum_pair}
 \end{align}
 %
 Definiamo le variabili alle variazioni $\delta x$, $\delta u$ e $\delta y$ come 
