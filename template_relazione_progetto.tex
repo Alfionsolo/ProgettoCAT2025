@@ -180,7 +180,7 @@ dove le matrici $A$, $B$, $C$ e $D$ vengono calcolate come
 		\pdv{x_1}{f_2} & \pdv{x_2}{f_2}
 	\end{bmatrix} = \begin{bmatrix}
 		0 & 1 \\
-		-\frac{k}{J(x_{1e})} + \frac{(-u+\beta x_{2e}+kx_{1e})J'(x_1)}{J(x_{1e})^2} & -\frac{\beta}{J(x_{1e})}
+		u\tau'(x_{1e}) - k & - \beta
 	\end{bmatrix}
 	\\
 	B &=\begin{bmatrix}
@@ -188,7 +188,7 @@ dove le matrici $A$, $B$, $C$ e $D$ vengono calcolate come
 		\pdv{u}{f_2}
 	\end{bmatrix} = \begin{bmatrix}
 		0 \\
-		1/J(x_{1e})
+		\tau(x_{1e})
 	\end{bmatrix}
 	\\
 	C &=\begin{bmatrix}
@@ -204,7 +204,7 @@ dove le matrici $A$, $B$, $C$ e $D$ vengono calcolate come
 	\end{bmatrix}
 \end{align}
 \end{subequations}
-dove $J'(x_1)=\sum_{i=1}^{4}iJ_i(-\sin(ix_{1e}+\psi_i))$.
+dove $\tau'(x_1)=\frac{2cos(\alpha)sin(\theta)cos(\theta)(cos^2(\theta)sin^2(\theta))}{(1-sin^2(\theta)cos^2(\theta))^2}$.
 \section{Calcolo Funzione di Trasferimento}
 
 In questa sezione, andiamo a calcolare la funzione di trasferimento $G(s)$ dall'ingresso $\delta u$ all'uscita $\delta y$ mediante la seguente formula 
