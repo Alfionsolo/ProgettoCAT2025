@@ -16,11 +16,12 @@ tao = @(theta) cos(alpha)/(1-(sin(theta)*cos(theta))^2);
 %% Punto 1 - Linearizzazione
 
 dtao = @(th) 2*cos(alpha)*sin(th)*cos(th)*(cos(th)^2 - sin(th)^2)/ (1-sin(th)^2*cos(th)^2)^2;
-df2dx1 = u_e*dtao(x_e(1))-k;
+df2dx1 = u_e*(dtao(x_e(1))/J)-(k/J);
 df2dx2 = - beta;
+df2du=tao(x_e(1))/J;
 %linearizzazione nell'intorno di equilibrio
 A = [0, 1; df2dx1, df2dx2];
-B = [0; tao(x_e(1))];
+B = [0; df2du];
 C = [1 0];
 D = 0;
 
