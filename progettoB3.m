@@ -4,20 +4,20 @@
 clear all; clc;
 
 %% Parametri dati
-th_e = pi * (5 / 9); %OO
+th_e = pi * (5 / 9); %1OO
 
 beta = 0.5;
 alpha= pi* (5/18);
 x_e = [th_e; 0];
-u_e = pi * 273,14;
+u_e = pi* 424.5;
 k = 500;
 J = 400;
-tao = @(theta) cos(alpha)/(1-(sin(theta)*cos(theta))^2);
+tao = @(theta) cos(alpha)/(1-(sin(alpha)*cos(theta))^2);
 %% Punto 1 - Linearizzazione
 
-dtao = @(th) 2*cos(alpha)*sin(th)*cos(th)*(cos(th)^2 - sin(th)^2)/ (1-sin(th)^2*cos(th)^2)^2;
-df2dx1 = u_e*(dtao(x_e(1))/J)-(k/J);
-df2dx2 = - beta;
+dtao = @(th) -(2*sin(alpha)^2*cos(alpha)*sin(th)*cos(th)) / (1-sin(alpha)^2 * cos(th)^2)^2;
+df2dx1 = (u_e*dtao(x_e(1))/J)-(k/J);
+df2dx2 = - beta/J;
 df2du=tao(x_e(1))/J;
 %linearizzazione nell'intorno di equilibrio
 A = [0, 1; df2dx1, df2dx2];
