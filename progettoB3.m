@@ -207,7 +207,7 @@ hold on
 patch(xs, ys,'r','FaceAlpha',0.2,'EdgeAlpha',0);
 patch(Bnd_n_x, Bnd_n_y,'g','FaceAlpha',0.2,'EdgeAlpha',0);
 patch(Bnd_Ta_x, Bnd_Ta_y,'b','FaceAlpha',0.2,'EdgeAlpha',0);
-% Legenda colori
+%Legenda colori
 Legend_mag = ["A_d", "A_n", "\omega_{c,min}"];
 legend(Legend_mag);
 
@@ -215,7 +215,7 @@ margin(tf, {omega_plot_min, omega_plot_max});
 grid on; zoom on;
 patch(Bnd_Mf_x, Bnd_Mf_y,'g','FaceAlpha',0.2,'EdgeAlpha',0);
 
-% Legenda colori
+%Legenda colori
 Legend_arg = ["Ge(j\omega)"; "M_f"];
 legend(Legend_arg);
 hold off
