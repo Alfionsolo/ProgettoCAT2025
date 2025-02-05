@@ -4,63 +4,45 @@
 clear all; clc;
 
 %% Parametri dati
-syms theta real
-syms omega real
-syms u real
-syms b real
-syms k real
-syms j real
-syms T(theta)
-%syms alpha real
-
-x = [theta; omega];
-alpha=pi * 5/18;
-f1 = omega;
-f2 = (u*T - b*omega - k*theta)/j;
-f = [f1; f2];
-h = theta;
-E = solve([theta == pi*5/9,f1 == 0,f2 == 0],'Real',true);
-
-%Verifica derivate per template
-[df1x1]=gradient(f1,theta); 
-[df1x2]=gradient(f1,omega); 
-[df2x1]=gradient(f2,theta); 
-[df2x2]=gradient(f2,omega); 
-
-%TOGLIERE I COMMENTI E SCOMMENTARE ANCHE syms aplha real MA commentare T sotto e l'aplha definito sopra per vedere il diff(T(theta),theta)
-%T = cos(alpha)/(1-(sin(alpha)*cos(theta))^2);
-%dT=diff(T,theta);
-
-j=400;
-b = 0.5;
+th_e = pi * (5 / 9); %1OO
+beta = 0.5;
+alpha= pi* (5/18);
+x_e = [th_e; 0];
+u_e = pi* 424.5; %kx1e/tao
 k = 500;
-theta = double(E.theta);
-omega = double(E.omega);
-T = cos(alpha)/(1-(sin(alpha)*cos(theta))^2);
+J = 400;
+T = @(theta) cos(alpha)/(1-(sin(alpha)*cos(theta))^2);
 
-%Con opportuni cambiamenti nei parametri, si vede che diff(T(theta),theta)
-%è :
-% dT=-(2*cos(alpha)*sin(alpha)^2*cos(theta)*sin(theta))/(1-sin(alpha)^2*cos(theta)^2)^2;
-
-A = jacobian(f,x);
-B = jacobian(f,u);
-C = jacobian(h,x);
-D = jacobian(h,u);
-
-
-u = double(subs(E.u));
 %% Punto 1 - Linearizzazione
-A = double(subs(A));
-B = double(subs(B));
-C = double(subs(C));
-D = double(subs(D));
+dT= @(theta)-(2*cos(alpha)*sin(alpha)^2*cos(theta)*sin(theta))/(1-sin(alpha)^2*cos(theta)^2 )^2;
+%OPPURE:
+%dT= @(th) -(cos(alpha)*sin(alpha)^2*sin(2*th)) / (sin(alpha)^2 *cos(th)^2-1)^2;
+
+%Valutata:
+%dT= -(2*cos(alpha)*sin(alpha)^2*cos(th_e)*sin(th_e))/(1-sin(alpha)^2*cos(th_e)^2 )^2;
+
+%COMMENTARE PER VALUTARE dT all'equilibrio
+df2dx1 = (u_e*dT(x_e(1))/J)-(k/J);
+%SCOMMENTARE PER VALUTARE dT in th_e:
+%df2dx1 = (u_e*dT/J)-(k/J);
+
+%che sarebbe:
+%df2x1=-(k-u* dtao )/j
+%df2dx1= - k/400 -(u*cos(alpha)*sin(alpha)^2*cos(theta)*sin(theta))/(200*(sin(alpha)^2*cos(theta)^2 - 1)^2);  
+
+df2dx2 = - beta/J;
+df2du=T(x_e(1))/J;
+
+%linearizzazione nell'intorno di equilibrio
+A = [0, 1; df2dx1, df2dx2];
+B = [0; df2du];
+C = [1 0];
+D = 0;
 
 %% Punto2 - Funzione di trasferimento
 s=tf('s');
 G=C*(inv(s*eye(2)-A))*B+D;
-%zpk(G):
-P=[1,0.00125,1.25]; %coefficienti del polinomio in S
-y_val=roots(P); %poli del polinomio
+
 %% Patch zone proibite
 patched(2, G);
 
@@ -252,3 +234,6 @@ Legend_arg = ["Ge(j\omega)"; "M_f"];
 legend(Legend_arg);
 hold off
 end
+
+
+
