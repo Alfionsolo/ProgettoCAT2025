@@ -135,7 +135,7 @@ minimum height=3em, minimum width=6em]
 	\begin{align}
 		\begin{cases}
 			x_{2e} = 0 \\
-			\frac{u*\tau(x_{1e})}{J} - \frac{k x_{1e} } {J} &= 0 \implies u_e = \frac{k x_{1e}}{\tau(x_{1e})}
+			\frac{u_e*\tau(x_{1e})}{J} - \frac{k x_{1e} } {J} &= 0 \implies u_e = \frac{k x_{1e}}{\tau(x_{1e})}
 		\end{cases}
 	\end{align}
 	%
@@ -181,7 +181,7 @@ minimum height=3em, minimum width=6em]
 				\pdv{x_1}{f_2} & \pdv{x_2}{f_2}
 			\end{bmatrix} = \begin{bmatrix}
 				0 & 1 \\
-				\frac{u\tau'(x_{1e})}{J} - \frac{k}{J} & - \frac{\beta}{J}
+				\frac{u_e\tau'(x_{1e})}{J} - \frac{k}{J} & - \frac{\beta}{J}
 			\end{bmatrix}
 			\\
 			B &=\begin{bmatrix}
@@ -213,10 +213,10 @@ minimum height=3em, minimum width=6em]
 	%
 	%
 	\begin{align}\label{eq:transfer_function}
-		G(s) = C(sI - A)^{-1}B+D = \frac{0.4371}{s^2 + 0.08743 s + 8.743}.
+		G(s) = C(sI - A)^{-1}B+D = \frac{0.0016359}{s^2 + 0.00125 s + 1.25}.
 	\end{align}
 	%
-	Dunque il sistema linearizzato~\eqref{eq:linearized_system} è caratterizzato dalla funzione di trasferimento~\eqref{eq:transfer_function} con $2$ poli in $-0.043 \pm 2.956i$. In Figura \ref{fig:G} mostriamo il corrispondente diagramma di Bode. 
+	Dunque il sistema linearizzato~\eqref{eq:linearized_system} è caratterizzato dalla funzione di trasferimento~\eqref{eq:transfer_function} con $2$ poli in $-0.000625 + 1.118033i$. In Figura \ref{fig:G} mostriamo il corrispondente diagramma di Bode. 
 	
 	\begin{figure}[h]
 		\centering
